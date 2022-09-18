@@ -1,0 +1,61 @@
+@use '../util' as u;
+
+/* 
+BEM model - Block, Element, Modifier
+    -can nest selectors
+    -B - block - standalone component in the design (ex. <div class=grid>...</div>)
+    -E - element - child items contained in the block (ex. <main class="grid__main">...</main> and <aside class="grid__sidebar">...</aside>)
+    -M - modifier - alternate versions of either blocks or elements, denoted with a double hyphen --
+
+    BEM benefits 
+        - helps to keep the class names unique so that you don't have style conflicts, 
+        - if you ever change the name of the block from "grid" to something else, you only have to change it in one place in your sass files, 
+        - useful for organization in the code - easier to track down where style rules come from in the code
+*/
+
+
+
+.grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    gap: u.rem(40);
+    //max-width: 1000px;
+    width: min(100% - u.rem(40), u.rem(1000));
+    margin-inline: auto;
+
+    @include u.breakpoint(large){
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: auto;
+    }
+
+    &__main, &__sidebar{
+        padding: u.rem(40);
+    }
+
+    &__main{
+        background-color: hsl(240, 85%, 42%);
+
+        @include u.breakpoint(medium){
+            background-color: hsl(120, 100%, 20%);
+        }
+        @include u.breakpoint(large){
+            background-color: hsl(39, 87%, 45%);
+        }
+    }
+    &__sidebar{
+      
+        @include u.breakpoint(medium){
+            text-align:center;
+        }
+        @include u.breakpoint(large){
+            text-align: left;
+        }
+      
+    }
+
+    &__widget{
+        padding: u.rem(16); 
+    }
+
+}

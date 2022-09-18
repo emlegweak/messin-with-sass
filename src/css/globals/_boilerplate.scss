@@ -1,0 +1,20 @@
+@use '../util/fonts' as u;
+
+html{
+    box-sizing: border-box;
+    //makes 1rem = 10px instead of 16
+    //font-size: 62.5%;
+    font-size: 100%;
+}
+
+*, *::before, *::after{
+    box-sizing: inherit;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color:var(--background-color);
+    color: var(--text-color);
+    font-family: u.$font;
+}

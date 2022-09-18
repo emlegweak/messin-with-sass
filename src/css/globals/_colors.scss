@@ -1,0 +1,21 @@
+/* 
+CSS custom properties
+    -newer CSS feature and NATIVE to CSS, don't have to use Sass to create variables
+        -you can use JS to change the value of a CSS custom property after the site is loaded
+        -ex. for darkmode/lightmode
+    -can also set them on the body or html selector
+    - :root will override any values of the same variable name in html/body
+*/
+:root{
+    --background-color: hsl(0,0%,11%);
+    --text-color: hsl(0,0%,100%);
+}
+
+ //helper/utility class - you can reuse them in different elements across the app
+ .magenta{
+     background-color: hsl(300, 92%, 34%);
+ }
+ //helper/utility class
+ .green{
+     background-color: hsl(120, 100%, 25%);
+ }

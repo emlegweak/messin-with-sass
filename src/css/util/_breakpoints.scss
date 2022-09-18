@@ -1,0 +1,46 @@
+@use './functions' as f;
+
+/* 
+Breakpoints- up
+mobile 700px / 16 = 43.75em
+tablet 900px / 16 = 56.25em
+small monitors 1440px / 16 = 90em
+
+using built-in module: sass map
+    -can save data in key-value pairs, similar to objects in JS
+*/
+$breakpoints-up:(
+    "medium": f.em(700),
+    "large": f.em(900),
+    "xlarge": f.em(1440)
+);
+
+/* 
+Breakpoints- down
+mobile 699.98px / 16 = 43.7485em
+tablet 899.98px / 16 = 56.24875em
+small monitors 1439.98px / 16 = 89.99875em
+
+-don't want overlap in breakpoints or weird behavior may occur
+*/
+$breakpoints-down:(
+    "small": f.em(699.98),
+    "medium": f.em(899.98),
+    "large": f.em(1439.98)
+);
+
+
+//create mixins to write media queries
+//to get data from the sass map, use map-get method - takes 2 parameters: the name of the sass map we're loading data from and the name of the key we're loading the value from
+//@content loads all the style rules in the mixin when we're using it
+@mixin breakpoint($size){
+    @media(min-width: map-get($breakpoints-up, $size)){
+        @content;
+    }
+}
+
+@mixin breakpoint-down($size){
+    @media(max-width: map-get($breakpoints-down, size)){
+        @content;
+    }
+}
